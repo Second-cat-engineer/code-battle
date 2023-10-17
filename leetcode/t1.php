@@ -41,23 +41,32 @@ class Solution
             throw new Exception('invalid nums');
         }
 
-        $baseElemIndex = array_key_first($nums);
-        while (true) {
-            $baseElemValue = $nums[$baseElemIndex];
-
-            for ($startIndex = $baseElemIndex + 1; $startIndex <= $numsCount-1; $startIndex++) {
-
-                $sum = $baseElemValue + $nums[$startIndex];
-                if ($sum === $target) {
-                    return [$baseElemIndex, $startIndex];
+        for ($i = 0; $i < $numsCount; $i++) {
+            for ($j = $i + 1; $j < $numsCount; $j++) {
+                if ($nums[$j] == $target - $nums[$i]) {
+                    return [$i, $j];
                 }
             }
-
-            $baseElemIndex++;
-            if ($baseElemIndex > $numsCount-1) {
-                return null;
-            }
         }
+        return null;
+
+//        $baseElemIndex = array_key_first($nums);
+//        while (true) {
+//            $baseElemValue = $nums[$baseElemIndex];
+//
+//            for ($startIndex = $baseElemIndex + 1; $startIndex <= $numsCount-1; $startIndex++) {
+//
+//                $sum = $baseElemValue + $nums[$startIndex];
+//                if ($sum === $target) {
+//                    return [$baseElemIndex, $startIndex];
+//                }
+//            }
+//
+//            $baseElemIndex++;
+//            if ($baseElemIndex > $numsCount-1) {
+//                return null;
+//            }
+//        }
     }
 }
 
